@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "5"
+# ///
 # MAGIC %md
 # MAGIC
 # MAGIC <div style="text-align: center; line-height: 0; padding-top: 9px;">
@@ -83,6 +87,10 @@
 # MAGIC
 # MAGIC
 # MAGIC **Note:** We are dropping the binary content field as `display` function doesn't show the result. Binary field is too long to display.
+
+# COMMAND ----------
+
+user_docs_path
 
 # COMMAND ----------
 

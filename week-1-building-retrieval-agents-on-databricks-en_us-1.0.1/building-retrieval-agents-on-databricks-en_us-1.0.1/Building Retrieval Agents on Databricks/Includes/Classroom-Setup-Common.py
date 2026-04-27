@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "5"
+# ///
 # MAGIC %run ./_common
 
 # COMMAND ----------
@@ -44,11 +48,20 @@ def validate_table(self, name):
 
 # COMMAND ----------
 
-DA = DBAcademyHelper()
-catalog = DA.catalog_name
-schema = DA.schema_name
+# Bypass DBAcademyHelper() which requires dbacademy.ops.meta
+# Following the week-2 pattern of direct catalog/schema assignment
+catalog = "labuser_ajain2"
+schema = "retrieval_agent"
+
+# Create DBAcademyHelper instance without calling __init__
+# (preserves validate_table and other methods added by Cell 5)
+DA = object.__new__(DBAcademyHelper)
+NestedNamespace.__init__(DA)
+DA.catalog_name = catalog
+DA.schema_name = schema
 
 spark.sql(f"USE CATALOG {catalog}")
+spark.sql(f"CREATE SCHEMA IF NOT EXISTS {schema}")
 spark.sql(f"USE SCHEMA {schema}")
 
 print("Default catalog and schema are set.")
@@ -59,6 +72,26 @@ print("Default catalog and schema are set.")
 # MAGIC **Prepare Datasets:**
 
 # COMMAND ----------
+
+import shutil
+
+# Ensure shared data schema and source volumes exist (Workspace-Setup equivalent)
+spark.sql(f"CREATE SCHEMA IF NOT EXISTS {catalog}.data")
+
+_local_source_map = {"orion_docs": "data/orion-docs", "orion_text": "data/orion-text"}
+for _vol_name, _local_dir in _local_source_map.items():
+    if not spark.sql(f"SHOW VOLUMES IN {catalog}.data LIKE '{_vol_name}'").collect():
+        spark.sql(f"CREATE VOLUME IF NOT EXISTS {catalog}.data.{_vol_name}")
+        _source_path = os.path.join(os.getcwd(), _local_dir)
+        _shared_vol_path = f"/Volumes/{catalog}/data/{_vol_name}"
+        if os.path.exists(_source_path):
+            for _name in os.listdir(_source_path):
+                _local_path = os.path.join(_source_path, _name)
+                if os.path.isfile(_local_path):
+                    shutil.copy(_local_path, os.path.join(_shared_vol_path, _name))
+            print(f"✅ Populated shared volume {catalog}.data.{_vol_name} from local files.")
+        else:
+            print(f"⚠️ Local source directory {_source_path} not found.")
 
 def create_and_copy_volume_if_missing(volume_name):
     shared_path = f"/Volumes/{catalog}/data/{volume_name}"
@@ -93,3 +126,7 @@ user_docs_path = f"/Volumes/{catalog}/{schema}/orion_docs"
 user_docs_volume = f"{catalog}.{schema}.orion_docs"
 user_text_path = f"/Volumes/{catalog}/{schema}/orion_text"
 user_text_volume = f"{catalog}.{schema}.orion_text"
+
+# COMMAND ----------
+
+

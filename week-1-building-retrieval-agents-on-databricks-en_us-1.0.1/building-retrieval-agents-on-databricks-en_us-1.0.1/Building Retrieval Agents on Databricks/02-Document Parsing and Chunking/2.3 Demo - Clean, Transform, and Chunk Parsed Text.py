@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "5"
+# ///
 # MAGIC %md
 # MAGIC
 # MAGIC <div style="text-align: center; line-height: 0; padding-top: 9px;">
@@ -238,6 +242,10 @@ df_chunks = df_chunks.withColumn("id", F.monotonically_increasing_id())
 df_chunks.write.format("delta").mode("overwrite").option("mergeSchema", "true").saveAsTable(chunked_table)
 
 display(spark.read.table(chunked_table))
+
+# COMMAND ----------
+
+chunked_table
 
 # COMMAND ----------
 
