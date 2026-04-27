@@ -1,0 +1,9 @@
+{
+    "llm_endpoint": "databricks-gpt-oss-120b",
+    "llm_temperature": 0.1,
+    "system_prompt": "You are a helpful assistant. Make sure to use tools for additional functionality.",
+    "tool_list": [
+        "labuser_ajain2.airbnb_agent.avg_neigh_price",
+        "labuser_ajain2.airbnb_agent.airbnb_posting_info"
+    ]
+}

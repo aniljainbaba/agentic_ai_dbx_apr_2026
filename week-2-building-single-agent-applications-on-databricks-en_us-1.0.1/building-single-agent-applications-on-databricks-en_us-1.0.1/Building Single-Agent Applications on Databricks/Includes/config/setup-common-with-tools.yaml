@@ -10,12 +10,13 @@ course_name: "Building Single-Agent Applications on Databricks"
 serverless_compute_version: "5"
 
 catalog:
+  name: "labuser_ajain2"
   prefix: "labuser"
   schema_name: "airbnb_agent"
   volume_name: "agent_vol"
 
 data:
-  databricks_share_name: "databricks_airbnb_sample_data"   ## Modify if using your own workspace
+  databricks_share_name: "labuser_ajain2"   ## Modify if using your own workspace
   table_name: "sf_airbnb_listings"
   vocareum_share_name: "airbnb"
 
