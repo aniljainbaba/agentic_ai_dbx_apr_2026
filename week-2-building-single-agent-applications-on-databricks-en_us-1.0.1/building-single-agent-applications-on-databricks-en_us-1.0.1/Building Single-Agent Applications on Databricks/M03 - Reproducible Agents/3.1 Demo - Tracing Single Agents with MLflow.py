@@ -1,4 +1,8 @@
 # Databricks notebook source
+# /// script
+# [tool.databricks.environment]
+# environment_version = "5"
+# ///
 # MAGIC %md
 # MAGIC
 # MAGIC <div style="text-align: center; line-height: 0; padding-top: 9px;">
@@ -166,6 +170,11 @@ agent = demo_agent1.DatabricksAgent(
     catalog_name=catalog_name,
     schema_name=schema_name
 )
+
+# COMMAND ----------
+
+print(f"catalog_name: {catalog_name}")
+print(f"schema_name: {schema_name}")
 
 # COMMAND ----------
 
