@@ -11,7 +11,8 @@ agentic_ai_dbx_apr_2026/
 ├── README.md
 ├── week-1-building-retrieval-agents-on-databricks-en_us-1.0.1/
 ├── week-2-building-single-agent-applications-on-databricks-en_us-1.0.1/
-└── week-3-genai-agent-evaluation-on-databricks-en_us-1.0.0/
+├── week-3-genai-agent-evaluation-on-databricks-en_us-1.0.0/
+└── week-4-generative-ai-deployment-and-monitoring-en_us-2.0.9/
 ```
 
 ---
@@ -101,6 +102,33 @@ agentic_ai_dbx_apr_2026/
 | **M01** | AI Agent Evaluation Fundamentals | 1.1 Lecture — The Challenge of Evaluating AI Agents, 1.2 Demo — Agent Setup, 1.3 Lecture — MLflow's Evaluation Framework |
 | **M02** | Built-In and Guideline Judges | 2.1 Lecture — Types of Evaluation Judges, 2.2 Demo — Using MLflow Built-In Judges, 2.3 Demo — Guideline Judges with MLflow, 2.4 Lab — Applying Agent Evaluation, 2.5 Demo — Custom Judges with MLflow |
 | **M03** | Custom Judges and Human Feedback | 3.1 Lecture — Offline vs. Online Evaluation Strategies, 3.2 Lecture — Best Practices and Practical Application, 3.3 Lab — Developer and SME Feedback with MLflow |
+
+---
+
+## Week 4 — Generative AI Deployment and Monitoring
+
+> Folder: `week-4-generative-ai-deployment-and-monitoring-en_us-2.0.9/`
+
+**Course overview:** Operationalize, deploy, and monitor generative AI applications. Covers batch and real-time deployment using Databricks Model Serving, LLMOps best practices, and online monitoring of AI systems with Lakehouse Monitoring.
+
+### Prerequisites
+- Familiarity with NLP concepts, prompt engineering, and the Databricks Data Intelligence Platform
+- Experience with RAG architectures (embeddings, vectors, vector databases)
+- Experience building LLM applications using multi-stage reasoning chains and agents
+- Familiarity with Databricks tools for evaluation and governance
+
+### Technical Requirements
+- Databricks Runtime **`17.3.x-cpu-ml-scala2.13`**
+
+### Modules
+
+| Module | Topic | Notebooks |
+|--------|-------|-----------|
+| **00** | Build Model | 00-Build-Model — Setup notebook |
+| **01** | Batch Deployment | Lecture — Introduction to Batch Deployment, 1.0 Demo — Batch Inference using SLM, 1.LAB — Batch Inference using SLM |
+| **02** | Real-time Deployment | Lecture — Introduction to Real-time Deployment & Databricks Model Serving, 2.1 Demo — Deploying an LLM Chain to Model Serving, 2.2 Demo — Serving Models with Provisioned Throughput, 2.LAB — Custom Model Deployment and A/B Testing |
+| **03** | AI System Monitoring | Lecture — AI Application Monitoring, 3.1 Demo — Online Monitoring an LLM RAG Chain, 3.LAB — Online Monitoring |
+| **04** | LLMOps Concepts | Lecture — MLOps Primer, Lecture — Deployment Methods |
 
 ---
 
